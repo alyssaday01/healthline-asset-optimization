@@ -104,7 +104,7 @@ The full analysis notebook can be found here: ```notebooks/healthline_analysis.i
 
 ## 🖥️ Presentation Deck
 
-View the 4-slide executive summary here: [Optimizing Asset Strategy - Slide Deck]([link_here](https://www.canva.com/design/DAGssqJldq4/cCYKavNmBDyKxfZ1Yn9vLA/edit?ui=eyJBIjp7fX0))
+View the 4-slide executive summary here: [Optimizing Asset Strategy - Slide Deck](https://www.canva.com/design/DAGssqJldq4/cCYKavNmBDyKxfZ1Yn9vLA/edit?ui=eyJBIjp7fX0)
 
 ---
 
