@@ -100,7 +100,7 @@ Simulations used predicted conversion probabilities to assign the asset most lik
 
 The full analysis notebook can be found here: ```notebooks/healthline_analysis.ipynb```
 
---
+---
 
 ## 🖥️ Presentation Deck
 
