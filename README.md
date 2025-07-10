@@ -19,11 +19,11 @@ Healthline’s business team sought a data-driven method to determine which cont
 
 ```plaintext
 healthline-asset-optimization/
-├── data/ │
-└── Case_Material.xlsx # Provided dataset
-├── notebooks/ │
-└── healthline_analysis.ipynb # Full analysis notebook
-├── README.md # This file
+├── data/
+│   └── Case_Material.xlsx            # Provided dataset
+├── notebooks/
+│   └── healthline_analysis.ipynb     # Full analysis notebook
+├── README.md                         # This file
 ```
 
 ---
@@ -110,6 +110,6 @@ View the 4-slide executive summary here: [Optimizing Asset Strategy - Slide Deck
 
 ## 👤 Author
 
-**Alyssa Day**
-Data Science | Artificial Intelligence | Strategy & Impact
-[Github](https://github.com/alyssaday01) * [LinkedIn](https://www.linkedin.com/in/alyssaday01/)
+**Alyssa Day**  
+Data Science | Artificial Intelligence | Strategy & Impact  
+[GitHub](https://github.com/alyssaday01) • [LinkedIn](https://www.linkedin.com/in/alyssaday01/)
