@@ -65,11 +65,13 @@ Two models were evaluated to predict which asset maximizes **expected revenue pe
 - **Logistic Regression:** Simpler decision boundary → **more aggressive targeting**, higher simulated lift but potentially overfits.  
 - **Random Forest:** **More conservative**, calibrated probabilities, delivers a **realistic +44% uplift** vs. random assignment.
 
+![Simulated Revenue Lift by Model](figures/Sim_reve.png)
+
 ---
 
 ## 📈 ROC Curve Performance
 
-![ROC Curve](
+![ROC Curve](figures/ROC_curve.png)
 
 ROC curves validate model quality:
 
