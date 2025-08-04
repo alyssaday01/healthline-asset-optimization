@@ -1,9 +1,9 @@
 # 📊 ***From Random to Relevant:* A Predictive Asset Targeting Study**
-**Optimizing Conversion and Revenue**
+### Optimizing Conversion and Revenue
 
 ---
 
-## Problem Statement
+## 🧠 Problem Statement
 
 Healthline currently uses a random asset assignment strategy for visitors. While this ensures broad exposure across content, it overlooks available user signals, potentially limiting both conversion rates and total revenue.
 
