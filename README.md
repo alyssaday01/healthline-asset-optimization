@@ -1,5 +1,5 @@
 # 📊 ***From Random to Relevant:* A Predictive Asset Targeting Study**
-### Optimizing Conversion and Revenue
+### A Predictive Asset Targeting Study for Healthline
 
 ---
 
@@ -97,8 +97,7 @@ Predictive modeling offers a **substantial improvement** over random asset assig
 ---
 
 ## 📓 Notebook
-
-The full analysis notebook can be found here: ```notebooks/healthline_analysis.ipynb```
+See the full analysis in [`notebooks/healthline_analysis.ipynb`](notebooks/healthline_analysis.ipynb)
 
 ---
 
