@@ -64,7 +64,9 @@ Two models were evaluated to predict which asset maximizes **expected revenue pe
 
 ---
 
-## ROC Curve Performance
+## 📈 ROC Curve Performance
+
+![ROC Curve](
 
 ROC curves validate model quality:
 
@@ -104,5 +106,6 @@ See the full analysis in [`notebooks/healthline_analysis.ipynb`](notebooks/healt
 ## 👤 Author
 
 **Alyssa Day**  
-Data Science | Artificial Intelligence | Strategy & Impact  
-[GitHub](https://github.com/alyssaday01) • [LinkedIn](https://www.linkedin.com/in/alyssaday01/)
+*Data Science | Artificial Intelligence | Strategy & Impact*
+
+[GitHub](https://github.com/yourusername) • [LinkedIn](https://www.linkedin.com/in/yourprofile)
