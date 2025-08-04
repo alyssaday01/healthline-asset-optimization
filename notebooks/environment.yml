@@ -1,4 +1,4 @@
-name: base
+name: healthline-env
 channels:
   - defaults
 dependencies:
@@ -504,4 +504,3 @@ dependencies:
   - zope.interface=7.1.1=py313h827c3e9_0
   - zstandard=0.23.0=py313h4fc1ca9_1
   - zstd=1.5.6=h8880b57_0
-prefix: C:\Users\Alyssa\anaconda3
