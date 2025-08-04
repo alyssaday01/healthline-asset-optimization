@@ -5,9 +5,9 @@
 
 ## Problem Statement
 
-Healthline currently uses a **random asset assignment strategy** for visitors. While this ensures broad exposure across content, it ignores available user signals — potentially limiting both **conversion rate** and **total revenue**.
+Healthline currently uses a random asset assignment strategy for visitors. While this ensures broad exposure across content, it overlooks available user signals, potentially limiting both conversion rates and total revenue.
 
-This project explores whether **predictive modeling** can improve outcomes by recommending the asset most likely to convert for each user session.
+This project investigates whether predictive modeling can improve outcomes by recommending the asset most likely to convert for each user session.
 
 ---
 
@@ -27,90 +27,64 @@ healthline-asset-optimization/
 ## 🧪 Methodology Overview
 
 ### 1. Exploratory Data Analysis (EDA)
-Initial exploration revealed conversion rates vary by:
-- **Asset Shown**: Asset C had the highest conversion rate (~17%)
-- **Diagnosis Group**: Known diagnoses like Ulcerative Colitis outperform unknowns — but unknown users still convert well
-- **Device Type**: Mobile users converted more often than desktop users
-> 📌 These patterns suggest that personalization has potential — even when user profiles are incomplete.
+Key findings from the data:
+- **Asset x Diagnosis:**
+  - **Asset C** leads with the **highest conversion rates (~17%)**, particularly for **Ulcerative Colitis** and **Unknown-diagnosis** users.
+  - Unknown users still convert meaningfully, showing that **behavioral signals alone** can drive personalization.
+- **Device Type:**
+  - Conversion rates are **similar across devices**, with **mobile slightly ahead** of desktop/tablet.  
+  - Device type adds **limited predictive value** on its own but can help in combination with other features.
+- **Time of Day:**
+  - **Assets A & C** perform best in the **afternoon**, **Asset B** peaks in the **evening**, suggesting **timing influences conversion effectiveness**.
+    
+> 📌 **Implication:** Personalization opportunities exist even with incomplete profiles, especially when factoring in **diagnosis context and timing**.
+
+---
 
 ### 2. Asset Value Analysis *(Business Impact)*
-Even though Asset C had the highest conversion rate, it drove the lowest revenue. Why?
-- **Asset A** had the highest **total revenue** due to more overall conversions (despite a lower $5 average per-conversion value)
-- **Asset B** offered the **highest value** per conversion at $7 but lagged in volume
-- **Asset C**'s $2.50 per-conversion value limits its overall impact
-> 💡 Conversion rate alone is insufficient — asset evaluation must also consider **revenue per conversion** to guide optimization strategies.
+- **Asset A:** Generates the **highest total revenue** (~$10K baseline) via higher volume despite $5 per-conversion payout.  
+- **Asset B:** Highest **value per conversion ($7)** but limited reach → lower total dollars.  
+- **Asset C:** Converts best (~20% CVR) but its **$2.50 payout** caps total revenue (~$5.3K).
 
-### 2. Feature Engineering
-Several features were engineered to capture relevant engagement behavior and contextual cues:
-- `time_to_asset_sec`: Seconds from session to start to asset load
-- `is_morning`, `is_evening`: Flags based on time-of-day hour
-- `time of day`: Raw hour data used for time-window analysis
-- One-hot encoding of categorical variables (e.g., device type, diagnosis)
-
-#### Additional Analysis
-- **Conversion Rate by Asset & Time of Day**
-  Afternoon sessions had the highest average conversion rates overall.
-  - Asset A and C performed best in the **afternoon**
-  - Asset B peaked in the **evening**
- > ⏰ **Timing matters** — asset performance varies by time of day, suggesting value in time-aware targeting.
-
-### 3. Modeling Approaches
-Two models were trained to predict the **probability of conversion**, using behavioral and contextual features (e.g., diagnosis, device, time-to-asset, time of day):
-- **Logistic Regression**  
-  A baseline model that offers strong performance and interpretability
-- **Random Forest Classifier (calibrated)**  
-  A more expressive model for capturing non-linear interactions
-> Both models were trained on balanced class samples and tested on held-out data.
-
-### 4. Model Evaluation
-Models were evaluated using:
-- **ROC-AUC Scores**: Random Forest slightly outperformed Logistic Regression
-- **Feature Importances**: Return Visitor, time before asset display, and time of day were top drivers
-- **Business Simulations**: Used predicted probabilities to assign the optimal asset per session
-  > Logistic Regression tended to produce **higher simulated revenue**, while Random Forest offered **more conservative, but realistic performance**.
+> 💡 **Takeaway:** Asset strategy must optimize for **expected value (CVR × payout)** to avoid over-serving low-payout assets.
 
 ---
 
-## 💰 Simulated Business Impact
+### 3. Predictive Modeling & Revenue Simulation
 
-Simulations used predicted conversion probabilities to assign the asset most likely to convert per session.
+Two models were evaluated to predict which asset maximizes **expected revenue per session**:
 
-| Strategy | Simulated Revenue | % Uplift vs. Baseline |
-|----------|-------------------|------------------------|
-| Random (Current) | \$7,166 | — |
-| Logistic Regression | \$37,762 | +427.85% |
-| Random Forest | \$15,062 | +44.56% |
+| Model                | Baseline Rev. | Simulated Rev. | Lift ($)    | Lift (%)     |
+|---------------------|---------------|----------------|-------------|--------------|
+| Logistic Regression | $10,369.00    | $54,732.64     | $44,363.64  | **+427.9%**  |
+| Random Forest       | $10,369.00    | $14,989.20     | $4,620.20   | **+44.6%**   |
 
-> **Note**: Simulations are illustrative, and actual impact may vary. These results emphasize the value of using predictive targeting over randomness.
-
----
-
-## 🔑 Key Takeaways
-
-- **User signals are actionable** — even sessions with missing diagnosis can be targeted effectively
-- **Conversion ≠ Revenue** — a high conversion rate doesn’t guarantee high value
-- **Feature-engineered inputs**, such as time-to-asset and known diagnosis, drive strong performance
-- Predictive targeting outperforms random assignment across all tested strategies
-- Even simple models like Logistic Regression can unlock major gains in personalization
-> Decided to keep the '`Unknown Diagnosis` value to preserve data purity and avoid losing useful information
+- **Logistic Regression:** Simpler decision boundary → **more aggressive targeting**, higher simulated lift but potentially overfits.  
+- **Random Forest:** **More conservative**, calibrated probabilities, delivers a **realistic +44% uplift** vs. random assignment.
 
 ---
 
-## ✅ Final Analysis & Recommendation
-This analysis addresses the core challenge from the case study: **random asset assignment leaves conversion and revenue on the table**.
+## ROC Curve Performance
 
-To test predictive targeting:
-- A **Logistic Regression** model established the baseline and demonstrated the largest simulated revenue gain (+427%)
-- A **Random Forest** model captured more complex behavior and still outperformed random logic (+110%)
-> While Logistic Regression had the highest simulated uplift, the **Random Forest** model offers a **realistic deployment choice** — balancing performance and robustness without overconfidence in predictions.
+ROC curves validate model quality:
+
+- **Logistic Regression:** AUC = **0.81** → strong separation of converters/non-converters.  
+- **Random Forest:** AUC = **0.74** → lower but still predictive above random chance.
+
+> 📈 Both models provide meaningful predictive power for dynamic asset allocation.
 
 ---
 
-## 🚀 Deployment Recommendations
-- **Real-Time Integration**: Serve asset recommendations through an API during the session
-- **A/B Testing Framework**: Compare predictive targeting vs. current assignment logic in live experiments
-- **Monitoring & Iteration**: Track feature drift, retrain periodically, and refine based on updated behavior
-- **Fallback Logic**: Implement edge-case handling for sessions with incomplete or short engagement data
+## ✅ Conclusion & Recommended Actions
+
+Predictive modeling offers a **substantial improvement** over random asset assignment, with even conservative approaches delivering **+44% revenue uplift**.
+
+### 📌 Next Steps
+
+1. **Deploy contextual asset serving** using diagnosis, engagement, device, and time features.  
+2. **Optimize for expected value**, not just conversion rate, to maximize ROI.  
+3. **Run controlled experiments** (A/B tests) comparing model-driven vs. random assignment.  
+4. **Monitor performance** over time for model drift and changing asset economics.
 
 ---
 
@@ -125,12 +99,6 @@ To test predictive targeting:
 ## 📓 Notebook
 
 The full analysis notebook can be found here: ```notebooks/healthline_analysis.ipynb```
-
----
-
-## 🖥️ Presentation Deck
-
-View the 4-slide executive summary here: [Optimizing Asset Strategy - Slide Deck](https://www.canva.com/design/DAGssqJldq4/cCYKavNmBDyKxfZ1Yn9vLA/edit?ui=eyJBIjp7fX0)
 
 ---
 
