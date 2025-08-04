@@ -17,6 +17,9 @@ This project investigates whether predictive modeling can improve outcomes by re
 healthline-asset-optimization/
 ├── data/
 │   └── Case_Material.xlsx            # Provided dataset
+├── figures/
+│   ├── ROC_curve.png                 # ROC curve visualization
+│   └── Sim_reve.png 
 ├── notebooks/
 │   └── healthline_analysis.ipynb     # Full analysis notebook
 ├── README.md                         # This file
